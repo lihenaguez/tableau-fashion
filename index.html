@@ -119,6 +119,7 @@
             display: none;
             color: #d32f2f;
             font-size: 1.1em;
+            margin-top: 10px;
         }
 
         .tableau-placeholder:not(.visible) + .fallback-message {
@@ -231,10 +232,15 @@
             <p>Click PREVIEW in the menu to reveal the magic of data! 🕹️</p>
             <iframe
                 class="tableau-placeholder"
-                src="https://public.tableau.com/views/Book2_17447053978100/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link"
-                title="Interactive Tableau Dashboard">
+                src="https://public.tableau.com/views/Book2_17447053978100/Dashboard1?:language=en-US&:embed=y&:showVizHome=no&:display_count=n&:origin=viz_share_link"
+                title="Interactive Tableau Dashboard"
+                allowfullscreen
+                sandbox="allow-scripts allow-same-origin allow-popups">
             </iframe>
-            <p class="fallback-message">Oops! The dashboard is taking a nap 😴. Try refreshing or check your connection!</p>
+            <p class="fallback-message">
+                Oops! The dashboard isn’t loading 😴. Try refreshing the page or 
+                <a href="https://public.tableau.com/views/Book2_17447053978100/Dashboard1" target="_blank">view it directly on Tableau Public</a>.
+            </p>
         </section>
 
         <!-- Insights Section -->
@@ -306,6 +312,12 @@
                 tableauIframe.classList.remove('visible');
             } else {
                 tableauIframe.classList.add('visible');
+                // Force reload iframe to ensure it renders
+                const src = tableauIframe.src;
+                tableauIframe.src = '';
+                setTimeout(() => {
+                    tableauIframe.src = src;
+                }, 100);
             }
         }
 
@@ -315,6 +327,20 @@
                 e.preventDefault();
                 const sectionId = this.getAttribute('href');
                 document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Check if iframe loads
+        window.addEventListener('load', () => {
+            const tableauIframe = document.querySelector('.tableau-placeholder');
+            tableauIframe.addEventListener('load', () => {
+                try {
+                    if (tableauIframe.contentWindow.document.body.innerHTML === '') {
+                        console.warn('Tableau iframe appears empty');
+                    }
+                } catch (e) {
+                    console.warn('Cannot access iframe content, likely due to CORS');
+                }
             });
         });
     </script>
