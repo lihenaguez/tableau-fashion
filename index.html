@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analytics Hub 📊✨</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-out;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        header p {
+            color: #f0f0f0;
+            font-size: 1.2em;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffeb3b;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        h2 {
+            color: #4facfe;
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        /* Tableau Section */
+        .tableau-section {
+            text-align: center;
+            margin: 40px 0;
+            padding: 20px;
+            background: linear-gradient(to bottom, #ffffff, #e3f2fd);
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .tableau-section:hover {
+            transform: scale(1.02);
+        }
+
+        .tableau-section h2 {
+            font-size: 2.2em;
+            color: #1e88e5;
+        }
+
+        .tableau-placeholder {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .tableau-placeholder.visible {
+            display: block;
+            opacity: 1;
+        }
+
+        .fallback-message {
+            display: none;
+            color: #d32f2f;
+            font-size: 1.1em;
+        }
+
+        .tableau-placeholder:not(.visible) + .fallback-message {
+            display: block;
+        }
+
+        /* Analytics Categories */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .analytics-card {
+            background: linear-gradient(45deg, #81d4fa, #4fc3f7);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            color: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .analytics-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .analytics-card h3 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Scroll Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            .tableau-placeholder { height: 400px; }
+            nav a { margin: 0 10px; font-size: 0.9em; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Data Analytics Hub 📊✨</h1>
+        <p>Unlock Insights with Stunning Visualizations! 🚀</p>
+    </header>
+
+    <!-- Navigation with PREVIEW Button -->
+    <nav>
+        <a href="#home">Home 🏠</a>
+        <a href="#tableau">Tableau Visuals 📈</a>
+        <a href="#insights">Insights 🔍</a>
+        <a href="#contact">Contact 📧</a>
+        <a href="#" onclick="toggleTableau()">PREVIEW 👀</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Welcome Section -->
+        <section id="home" class="reveal">
+            <h2>Welcome to the Analytics Hub! 🎉</h2>
+            <p>
+                Dive into the world of data with our interactive dashboards and analytics tools.
+                Powered by Tableau, we bring you real-time insights in a fun and engaging way! 😄
+            </p>
+        </section>
+
+        <!-- Tableau Section -->
+        <section id="tableau" class="tableau-section reveal">
+            <h2>Interactive Tableau Dashboard 📊</h2>
+            <p>Click PREVIEW in the menu to reveal the magic of data! 🕹️</p>
+            <iframe
+                class="tableau-placeholder"
+                src="https://public.tableau.com/views/Book2_17447053978100/Dashboard1?:language=en-US&:display_count=n&:origin=viz_share_link"
+                title="Interactive Tableau Dashboard">
+            </iframe>
+            <p class="fallback-message">Oops! The dashboard is taking a nap 😴. Try refreshing or check your connection!</p>
+        </section>
+
+        <!-- Insights Section -->
+        <section id="insights" class="reveal">
+            <h2>Key Insights 🔍</h2>
+            <p>Discover trends, patterns, and actionable insights from our data analytics suite.</p>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Sales Trends 📈</h3>
+                    <p>Track revenue growth and market performance over time.</p>
+                </div>
+                <div class="analytics-card">
+                    <h3>Customer Behavior 😊</h3>
+                    <p>Understand user preferences and engagement metrics.</p>
+                </div>
+                <div class="analytics-card">
+                    <h3>Operational Efficiency ⚙️</h3>
+                    <p>Optimize processes with data-driven decisions.</p>
+                </div>
+                <div class="analytics-card">
+                    <h3>Market Insights 🌍</h3>
+                    <p>Stay ahead with competitive analysis and trends.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="reveal">
+            <h2>Get in Touch! 📬</h2>
+            <p>Have questions or want custom analytics? Reach out to us! 😎</p>
+            <button onclick="showContactAlert()">Contact Us 🚀</button>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Data Analytics Hub | Built with 💖 | <a href="#tableau">Back to Visuals</a></p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Scroll Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach((element) => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+
+        // Contact Button Alert
+        function showContactAlert() {
+            alert('📧 Reach us at analytics@datahub.com or call us at (123) 456-7890! 🚀');
+        }
+
+        // Toggle Tableau Visibility
+        function toggleTableau() {
+            const tableauIframe = document.querySelector('.tableau-placeholder');
+            const tableauSection = document.querySelector('#tableau');
+            tableauSection.scrollIntoView({ behavior: 'smooth' });
+            if (tableauIframe.classList.contains('visible')) {
+                tableauIframe.classList.remove('visible');
+            } else {
+                tableauIframe.classList.add('visible');
+            }
+        }
+
+        // Smooth Scroll for Navigation (excluding PREVIEW)
+        document.querySelectorAll('nav a:not([href="#"])').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const sectionId = this.getAttribute('href');
+                document.querySelector(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
+</body>
+</html>
